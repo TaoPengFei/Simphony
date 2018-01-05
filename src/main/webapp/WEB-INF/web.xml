@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="PentahoSampleServlet" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
+  <display-name>PentahoSampleServlet</display-name>
+
+  <servlet>
+    <description>Sample servlet which generates a HTML report</description>
+    <display-name>Sample</display-name>
+    <servlet-name>Sample</servlet-name>
+    <servlet-class>org.simphony.prd.Report.Sample</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Sample</servlet-name>
+    <url-pattern>/Sample</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description>RevenuecenterParameter</description>
+    <display-name>RevenuecenterParameter</display-name>
+    <servlet-name>RevenuecenterParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.RevenuecenterParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RevenuecenterParameter</servlet-name>
+    <url-pattern>/RevenuecenterParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>OrdertypeParameter</description>
+    <display-name>OrdertypeParameter</display-name>
+    <servlet-name>OrdertypeParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.OrdertypeParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrdertypeParameter</servlet-name>
+    <url-pattern>/OrdertypeParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>TendermediaParameter</description>
+    <display-name>TendermediaParameter</display-name>
+    <servlet-name>TendermediaParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.TendermediaParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TendermediaParameter</servlet-name>
+    <url-pattern>/TendermediaParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>MajorgroupParameter</description>
+    <display-name>MajorgroupParameter</display-name>
+    <servlet-name>MajorgroupParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.MajorgroupParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MajorgroupParameter</servlet-name>
+    <url-pattern>/MajorgroupParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <description>FamilygroupParameter</description>
+    <display-name>FamilygroupParameter</display-name>
+    <servlet-name>FamilygroupParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.FamilygroupParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FamilygroupParameter</servlet-name>
+    <url-pattern>/FamilygroupParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+ 
+  
+  <servlet>
+    <description>ReportFilterParameter</description>
+    <display-name>ReportFilterParameter</display-name>
+    <servlet-name>ReportFilterParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.ReportFilterParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportFilterParameter</servlet-name>
+    <url-pattern>/ReportFilterParameter.do</url-pattern>
+  </servlet-mapping>
+
+
+  <welcome-file-list>
+    <welcome-file>Sample</welcome-file>
+  </welcome-file-list>
+</web-app>
+
