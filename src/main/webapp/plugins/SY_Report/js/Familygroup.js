@@ -28,7 +28,7 @@ var setting = {
 				});
 				$.getJSON(
           // "/Simphony/ReportFilterParameter.do",
-          "http://localhost:8080/Simphony/FamilygroupParameter.do",
+          "http://localhost:8888/Simphony/FamilygroupParameter.do",
 					function(result){
 						jsonData = "[";
 						$.each(

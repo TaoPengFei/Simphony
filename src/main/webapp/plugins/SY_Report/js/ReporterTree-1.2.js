@@ -27,7 +27,7 @@ var setting = {
 				});
 				$.getJSON(
           // "/Simphony/ReportFilterParameter.do",
-          "http://localhost:8080/Simphony/ReportFilterParameter.do",
+          "http://localhost:8888/Simphony/ReportFilterParameter.do",
 					function(result){
 						jsonData = "[";
 						$.each(

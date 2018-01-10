@@ -9,13 +9,15 @@ import java.sql.Statement;
 
 /*
  * 璇ュ鐨凥andleMySQL璐熻矗涓庢湰鍦版暟鎹簱杩炴帴锛屽洜姝ゅ彧闇�瑕佷慨鏀规暟鎹簱鍚嶏紝鐢ㄦ埛鍚嶏紝瀵嗙爜鍗冲彲
- * */
+ **/
 public class SqlserverUtils {
 
     private String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private String url = "jdbc:sqlserver://10.200.10.82:1433;DatabaseName=Location_Activity_DB";//鏁版嵁搴撳湴鍧�浠ュ強鍚嶇О
     private String user = "sa";//鏁版嵁搴撶敤鎴峰悕
     private String password = "SIM29@123";//鏁版嵁搴撶敤鎴峰瘑鐮�
+    /*private String user = "Sbuxsim";//鏁版嵁搴撶敤鎴峰悕
+    private String password = "Welcome1@";//鏁版嵁搴撶敤鎴峰瘑鐮�*/
     private Connection conn;
 
 
@@ -98,6 +100,4 @@ public class SqlserverUtils {
             System.err.println(e.getMessage());
         }
     }
-
-
 }

@@ -23,11 +23,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Sample extends HttpServlet {
-    public Sample() {
+public class HistoricalEmployee extends HttpServlet {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1672805428151211881L;
+
+	public HistoricalEmployee() {
     }
 
-
+    /**
+     *
+     */
     public void init() {
         // Initialize the reporting engine
         ClassicEngineBoot.getInstance().start();
@@ -75,6 +82,7 @@ public class Sample extends HttpServlet {
      */
     private void generateReport(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException, ResourceException, ParseException {
         // Generate the report definition
+    	req.setCharacterEncoding("utf-8");
         final MasterReport report = createReportDefinition();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -82,25 +90,29 @@ public class Sample extends HttpServlet {
         Date EndDay = dateFormat.parse(req.getParameter("EndDay"));
         String revenuecenterid = req.getParameter("revenuecenterid");
         String ordertypeid = req.getParameter("ordertypeid");
-        String majorgroupreportid = req.getParameter("majorgroupreportid");
-        String familygroupreportid = req.getParameter("familygroupreportid");
         String tendermediareportid = req.getParameter("tendermediareportid");
-
-
+        String amount = req.getParameter("amount");
+        String barCode = req.getParameter("barCode");
+        String discountreportid = req.getParameter("discountreportid");
+        String employeeid = req.getParameter("employeeid");
+ 
         report.getParameterValues().put("StartDay", StartDay);
-		    report.getParameterValues().put("EndDay", EndDay);
+		report.getParameterValues().put("EndDay", EndDay);
         report.getParameterValues().put("revenuecenterid", revenuecenterid);
         report.getParameterValues().put("ordertypeid", ordertypeid);
-        report.getParameterValues().put("majorgroupreportid", majorgroupreportid);
-        report.getParameterValues().put("familygroupreportid", familygroupreportid);
         report.getParameterValues().put("tendermediareportid", tendermediareportid);
+        report.getParameterValues().put("discountreportid", discountreportid);
+        report.getParameterValues().put("employeeid", employeeid);
+        report.getParameterValues().put("amount", amount);
+        report.getParameterValues().put("barCode", barCode);
+        
+        //System.out.println(report.getParameterValues().put("barCode", barCode));
 
 		String outputType = req.getParameter("outputType");
-        String fileNameTemp = "SalesOverViewReport";
-
+        String fileNameTemp = "HistoricalEmployee";
 
         if (outputType.equalsIgnoreCase("pdf")) {
-            resp.setContentType("application/pdf;charset=utf-8");
+            resp.setContentType("application/pdf");
             OutputStream out = resp.getOutputStream();
             try {
                 PdfReportUtil.createPDF(report, out);
@@ -111,7 +123,7 @@ public class Sample extends HttpServlet {
             }
         }
         if (outputType.equalsIgnoreCase("html")){
-            resp.setContentType("text/html;charset=utf-8");
+            resp.setContentType("text/html");
             OutputStream out = resp.getOutputStream();
             try {
                 HtmlReportUtil.createStreamHTML(report, out);
@@ -123,7 +135,7 @@ public class Sample extends HttpServlet {
         }
         if(outputType.equalsIgnoreCase("excel2003") || outputType.equalsIgnoreCase("excel2007")){
             if(outputType.equalsIgnoreCase("excel2003")) {
-                resp.setHeader("Content-disposition", "attachment;filename="+fileNameTemp+".xls;charset=utf-8");
+                resp.setHeader("Content-disposition", "attachment;filename="+fileNameTemp+".xls");
                 OutputStream out = resp.getOutputStream();
                 try {
                     ExcelReportUtil.createXLS(report, out);
@@ -133,7 +145,7 @@ public class Sample extends HttpServlet {
                     out.close();
                 }
             } else if(outputType.equalsIgnoreCase("excel2007")){
-                resp.setHeader("Content-disposition", "attachment;filename="+fileNameTemp+".xlsx;charset=utf-8");
+                resp.setHeader("Content-disposition", "attachment;filename="+fileNameTemp+".xlsx");
                 OutputStream out = resp.getOutputStream();
                 try {
                     ExcelReportUtil.createXLSX(report, out);
@@ -144,7 +156,6 @@ public class Sample extends HttpServlet {
                 }
             }
         }
-
 
     }
 
@@ -157,7 +168,8 @@ public class Sample extends HttpServlet {
         Resource directly = null;
         try {
             final ClassLoader classloader = this.getClass().getClassLoader();
-            final URL reportDefinitionURL = classloader.getResource("reports/SalesOverViewReport.prpt");
+            final URL reportDefinitionURL = classloader.getResource("reports/HistReceipt_employee.prpt");
+
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
             directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);

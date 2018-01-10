@@ -219,5 +219,78 @@ public class RequestInfoFromSqlserver {
 		     return listTendermedia;  
 	 } 
 	 
+	 public List<Object> getDiscount(){  
+	    	
+	    	sqlserverUtils = new SqlserverUtils();  
+	        Statement statement = sqlserverUtils.linkSqlserver();  
+	        String sql = "select -1,-999,'ALL',1\r\n" + 
+	        		"union all\r\n" + 
+	        		"select discountID,-1,nameMaster,2 from discount\r\n" + 
+	        		"where organizationID =  10260\r\n" + 
+	        		"AND locationID  >=  -2147483648 ";  
+	        List<Object> listDiscount = new ArrayList<Object>();
+	        try {  
+	            ResultSet rs = statement.executeQuery(sql);  
+	            int i = 0;  
+	         
+	            while(rs.next()){  
+	                HashMap<Object,Object> map = new HashMap<Object,Object>();
+	        		map.put("id", rs.getInt(1));
+	        		map.put("pid", rs.getInt(2));
+	        		map.put("name", rs.getString(3));
+	        		map.put("level", rs.getInt(4));
+	        		
+	        		JSONObject jsonObject = JSONObject.fromObject(map);
+	        		
+	        		listDiscount.add(jsonObject.toString());
+	        		System.out.println(listDiscount);
+	                i++;  
+	            }  
+	        } catch (SQLException e) {  
+	            // TODO Auto-generated catch block  
+	            //e.printStackTrace();  
+	            System.err.println("SelectInfoService get出错");  
+	            System.err.println(e.getMessage());  
+	        }  
+	        sqlserverUtils.closeSqlserver(statement);  
+	        return listDiscount;  
+	    }  
 	 
+	    public List<Object> getEmployee(){  
+	    	
+	    	sqlserverUtils = new SqlserverUtils();  
+	        Statement statement = sqlserverUtils.linkSqlserver();  
+	        String sql = "select -1,-999,'ALL',1\r\n" + 
+	        		"union all\r\n" + 
+	        		"SELECT employeeID,-1,firstName,2 \r\n" + 
+	        		"FROM EMPLOYEE\r\n" + 
+	        		"where organizationID =  10260\r\n" + 
+	        		"AND locationID  >=  -2147483648";  
+	        List<Object> listEmployee = new ArrayList<Object>();
+	        try {  
+	            ResultSet rs = statement.executeQuery(sql);  
+	            int i = 0;  
+	         
+	            while(rs.next()){  
+	                HashMap<Object,Object> map = new HashMap<Object,Object>();
+	        		map.put("id", rs.getInt(1));
+	        		map.put("pid", rs.getInt(2));
+	        		map.put("name", rs.getString(3));
+	        		map.put("level", rs.getInt(4));
+	        		
+	        		JSONObject jsonObject = JSONObject.fromObject(map);
+	        		
+	        		listEmployee.add(jsonObject.toString());
+	        		System.out.println(listEmployee);
+	                i++;  
+	            }  
+	        } catch (SQLException e) {  
+	            // TODO Auto-generated catch block  
+	            //e.printStackTrace();  
+	            System.err.println("SelectInfoService get出错");  
+	            System.err.println(e.getMessage());  
+	        }  
+	        sqlserverUtils.closeSqlserver(statement);  
+	        return listEmployee;  
+	    } 
 }  

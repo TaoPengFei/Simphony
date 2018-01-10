@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.simphony.prd.Service.SelectInfoService;
 
-public class FamilygroupParameter extends HttpServlet {
+public class EmployeeParameter extends HttpServlet {
 	
-	public FamilygroupParameter() {
+	public EmployeeParameter() {
 		
 	}
 	
@@ -23,14 +23,13 @@ public class FamilygroupParameter extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		SelectInfoService familygroupInfo = new SelectInfoService();
+		SelectInfoService employeeInfo = new SelectInfoService();
 		
 		//TO-DO �Լ�Service�е�����
 		
-		List<Object> familygroup = familygroupInfo.getFamilygroupColoumName();
+		List<Object> employee = employeeInfo.getEmployeeColoumName();
 		OutputStream  out = resp.getOutputStream();
-		out.write(familygroup.toString().getBytes("UTF-8"));
-		
+		out.write(employee.toString().getBytes("UTF-8"));
 	}
 
 	@Override

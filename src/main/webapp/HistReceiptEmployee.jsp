@@ -1,6 +1,6 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <html>
 <head>
@@ -19,8 +19,7 @@
 	<!-- ztree -->
 	<link rel="stylesheet" href="plugins/SY_Report/ztree/css/demo.css" type="text/css">
 	<link rel="stylesheet" href="plugins/SY_Report/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<%--<link rel="stylesheet" href="plugins/SY_Report/ztree/css/metroStyle/metroStyle.css" type="text/css">--%>
-
+	
 	<!-- custom css-->
 	<link rel="stylesheet" href="plugins/SY_Report/css/ReporterVersion-1.2.css" type="text/css">
 
@@ -28,9 +27,10 @@
     <script type="text/javascript" src="plugins/SY_Report/ztree/js/jquery.ztree.excheck.js"></script>
 
     <script type="text/javascript" src="plugins/SY_Report/js/Revenuecenter.js"></script>
-	<script type="text/javascript" src="plugins/SY_Report/js/Familygroup.js"></script>
 	<script type="text/javascript" src="plugins/SY_Report/js/Ordertype.js"></script>
 	<script type="text/javascript" src="plugins/SY_Report/js/Tendermedia.js"></script>
+	<script type="text/javascript" src="plugins/SY_Report/js/Discount.js"></script>
+	<script type="text/javascript" src="plugins/SY_Report/js/Employee.js"></script>
 
 
 	<script type="text/javascript">
@@ -112,8 +112,8 @@
 				</div>
           </div>
 			</li>
-
-			<!-- FamilyGroup  -->
+			
+			<!-- 金额  -->
 			<li>
 				<div class="page-content">
 					<div class="container-fluid">
@@ -121,10 +121,10 @@
 							<div class="span4">
 								<div class="control-group">
 									<label class="control-label filter-text">
-										FamilyGroup
+										金额
 									</label>
 								<div class="controls">
-									<input id="citySel" type="text" readonly value="" style="width:190px;line-height: 30px;background-color: #fff;" onclick="showMenu(); return false;"/>
+									<input id="amount" type="text"  value="999999" style="width:190px;line-height: 30px;background-color: #fff;"/>
 								</div>
 							</div>
 						</div>
@@ -132,8 +132,8 @@
 				</div>
           </div>
 			</li>
-
-			<!--Tendermedia -->
+		
+			<!-- SKU码 -->
 			<li>
 				<div class="page-content">
 					<div class="container-fluid">
@@ -141,10 +141,50 @@
 							<div class="span4">
 								<div class="control-group">
 									<label class="control-label filter-text">
-										支付方式
+										SKU码
 									</label>
 								<div class="controls">
-									<input id="Sel_ted" type="text" readonly value="" style="width:190px;line-height: 30px;background-color: #fff;" onclick="showMenu_ted(); return false;"/>
+									<input id="barCode" type="text"  value="999999" style="width:190px;line-height: 30px;background-color: #fff;"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+          </div>
+			</li>
+			
+			<!--Discount -->
+			<li>
+				<div class="page-content">
+					<div class="container-fluid">
+						<div class="row-fluid" style="margin-top:0px">
+							<div class="span4">
+								<div class="control-group">
+									<label class="control-label filter-text">
+										折扣类型
+									</label>
+								<div class="controls">
+									<input id="Sel_dis" type="text" readonly value="" style="width:190px;line-height: 30px;background-color: #fff;" onclick="showMenu_dis(); return false;"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+          </div>
+			</li>
+			
+			<!--Employee -->
+			<li>
+				<div class="page-content">
+					<div class="container-fluid">
+						<div class="row-fluid" style="margin-top:0px">
+							<div class="span4">
+								<div class="control-group">
+									<label class="control-label filter-text">
+										收银员
+									</label>
+								<div class="controls">
+									<input id="Sel_emp" type="text" readonly value="" style="width:190px;line-height: 30px;background-color: #fff;" onclick="showMenu_emp(); return false;"/>
 								</div>
 							</div>
 						</div>
@@ -209,10 +249,6 @@
 		</ul>
 
 	</div>
-	<!-- -->
-	<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
-		<ul id="treeDemo" class="ztree" style="margin-top:0; width:300px;"></ul>
-	</div>
 	<div id="menurctContent" class="menuContent" style="display:none; position: absolute;">
 		<ul id="treeDemorct" class="ztree" style="margin-top:0; width:300px;"></ul>
 	</div>
@@ -221,6 +257,12 @@
 	</div>
 	<div id="menuContent_ted" class="menuContent" style="display:none; position: absolute;">
 		<ul id="treeDemo_ted" class="ztree" style="margin-top:0; width:300px;"></ul>
+	</div>
+	<div id="menuContent_dis" class="menuContent" style="display:none; position: absolute;">
+		<ul id="treeDemo_dis" class="ztree" style="margin-top:0; width:300px;"></ul>
+	</div>
+	<div id="menuContent_emp" class="menuContent" style="display:none; position: absolute;">
+		<ul id="treeDemo_emp" class="ztree" style="margin-top:0; width:300px;"></ul>
 	</div>
 	<!-- 报表展示区域  -->
 	<iframe id="report" width="100%"   title="报表预览" frameborder=no style="width:100%;height:800px;padding:0px 0px;"  ></iframe>
@@ -249,35 +291,6 @@
 				*************************************************/
 				var bindEvents = function(){
 					$("#btn").bind("click",function( e, treeId, treeNode ){
-						
-						/**
-				           *  	FamilyGroup
-				          **/
-			            var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-			              nodes = zTree.getCheckedNodes(true),
-			              v = "";
-			            var nodeId = "";
-			            nodeLevel = "";
-			            for (var i=0, l=nodes.length; i<l; i++) {
-			            	if(nodes[i].isParent){
-			            		v = "";
-			            		 v += nodes[i].name + ",";
-					              nodeId += nodes[i].id + ",";
-					              nodeLevel += nodes[i].level + ",";
-					              break;
-			            	}else{
-			            		v += nodes[i].name + ",";
-					              nodeId += nodes[i].id + ",";
-					              nodeLevel += nodes[i].level + ",";
-			            	}			          
-			            }
-			            if (v.length > 0 )
-			              v = v.substring(0, v.length-1);
-			            var cityObj = $("#citySel");
-			            cityObj.attr("value", v);
-			            //alert(nodeId);
-
-
 			              /**
 				           *  	营业点
 				          **/
@@ -359,21 +372,77 @@
 				          var Obj_ted = $("#Sel_ted");
 				          Obj_ted.attr("value", v_ted);
 				          //alert(nodeId_ord);
+				          
+				          /**
+				           *  	折扣类型
+				          **/
+				          var zTree_dis = $.fn.zTree.getZTreeObj("treeDemo_dis"),
+				          nodes_dis = zTree_dis.getCheckedNodes(true),
+				          v_dis = "";
+				          var nodeId_dis = "";
+				          nodeLevel_dis = "";
+				          for (var i=0, l=nodes_dis.length; i<l; i++) {
+				        	  if(nodes_dis[i].isParent){
+				        		  v_dis = "";
+				        		  v_dis += nodes_dis[i].name + ",";
+						            nodeId_dis += nodes_dis[i].id + ",";
+						            nodeLevel_dis += nodes_dis[i].level + ",";
+						            break;
+				        	  }else{
+				        		  v_dis += nodes_dis[i].name + ",";
+						            nodeId_dis += nodes_dis[i].id + ",";
+						            nodeLevel_dis += nodes_dis[i].level + ",";
+				        	  }				           
+				          }
+				          if (v_dis.length > 0 )
+				            v_dis = v_dis.substring(0, v_dis.length-1);
+				          var Obj_dis = $("#Sel_dis");
+				          Obj_dis.attr("value", v_dis);
+				          
+				          /**
+				           *  	收银员
+				          **/
+				          var zTree_emp = $.fn.zTree.getZTreeObj("treeDemo_emp"),
+				          nodes_emp = zTree_emp.getCheckedNodes(true),
+				          v_emp = "";
+				          var nodeId_emp = "";
+				          nodeLevel_emp = "";
+				          for (var i=0, l=nodes_emp.length; i<l; i++) {
+				        	  if(nodes_emp[i].isParent){
+				        		  v_emp = "";
+				        		  v_emp += nodes_emp[i].name + ",";
+						            nodeId_emp += nodes_emp[i].id + ",";
+						            nodeLevel_emp += nodes_emp[i].level + ",";
+						            break;
+				        	  }else{
+				        		  v_emp += nodes_emp[i].name + ",";
+						            nodeId_emp += nodes_emp[i].id + ",";
+						            nodeLevel_emp += nodes_emp[i].level + ",";
+				        	  }				           
+				          }
+				          if (v_emp.length > 0 )
+				            v_emp = v_emp.substring(0, v_emp.length-1);
+				          var Obj_emp = $("#Sel_emp");
+				          Obj_emp.attr("value", v_emp);
+				          
+				          /**
+				           *  	金额
+				          **/
+				        var amount = document.getElementById("amount").value; 
+				        /**
+				           *  SKU码
+				         **/
+				        var barCode = document.getElementById("barCode").value;
 
 						var url_param="";
 
-                        url_param = url_param + "familygroupreportid=" + nodeId.substr(0, nodeId.length - 1) +"&revenuecenterid="+ nodeIdrct.substr(0, nodeIdrct.length - 1) +"&ordertypeid="+ nodeId_ord.substr(0, nodeId_ord.length - 1)+"&tendermediareportid="+ nodeId_ted.substr(0, nodeId_ted.length - 1);
+                        url_param = url_param +"revenuecenterid="+ nodeIdrct.substr(0, nodeIdrct.length - 1) +"&ordertypeid="+ nodeId_ord.substr(0, nodeId_ord.length - 1)+"&tendermediareportid="+ nodeId_ted.substr(0, nodeId_ted.length - 1)+"&discountreportid="+ nodeId_dis.substr(0, nodeId_dis.length - 1)+"&employeeid="+ nodeId_emp.substr(0, nodeId_emp.length - 1)+"&amount="+ amount +"&barCode="+barCode;
 						/*开始日期*/	/*用正则表达式去截取开始日期*/
 						var StartDayParam = $('#reportrange span').text().match(/(\S*)~/)[1];
 						if( StartDayParam!="" && StartDayParam!=undefined ) url_param = url_param + "&StartDay=" + StartDayParam;
 						/*结束日期*/	/*用正则表达式去截取结束日期 */
 						var EndDayParam = $('#reportrange span').text().match(/~(\S*)/)[1];
 						if( EndDayParam!="" && EndDayParam!=undefined )  url_param = url_param + "&EndDay=" + EndDayParam;
-						/*品牌*/
-						/*var BrandParam = $("#Brand option:selected").val();		//取ID
-						if(BrandParam!=-1 && BrandParam!=undefined){
-							url_param=url_param+"&BrandSelect=" + BrandParam;
-						}*/
 						/*输出类型*/
 						var OutPutParam = $("#outputType").val();
 						if(OutPutParam!="" && OutPutParam!=undefined)	url_param = url_param + "&outputType=" + OutPutParam;
@@ -383,20 +452,12 @@
 						/*****************************************************
 						*                          报表的url                 *
 						*****************************************************/
-						/*var url="/pentaho/api/repos/%3Apublic%3Areport%3ASummaryReporter%3ASY_SummaryReport.prpt/viewer?" +
-						"accepted-page=0" +
-						"&paginate=false" +
-						"&showParameters=false" +
-						"&renderMode=REPORT" +
-						"&htmlProportionalWidth=false" +
-						"&webuser=admin" + url_param;*/
-            			var url = "http://localhost:8888/Simphony/Sample?" + url_param;
-						//alert(url);
+            			var url = "http://localhost:8888/Simphony/HistoricalEmployee?" + url_param;
+						alert(url);
 						$("#report").attr("src", url);
 					});
 				}();
 			}();
 		})(jQuery);
 	</script>
-	<%--<script type="text/javascript" src="/pentaho/js/sy_report_select.js"></script>--%>
 </html>

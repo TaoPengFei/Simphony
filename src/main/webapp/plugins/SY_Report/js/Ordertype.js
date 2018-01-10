@@ -25,7 +25,7 @@
 				});
 				$.getJSON(
 					// "/Simphony/ReportFilterParameter.do",
-					"http://localhost:8080/Simphony/OrdertypeParameter.do",
+					"http://localhost:8888/Simphony/OrdertypeParameter.do",
 					function(result){
 						jsonData_ord = "[";
 						$.each(

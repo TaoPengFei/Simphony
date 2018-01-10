@@ -9,7 +9,9 @@ public class Test {
 		System.out.println(a.getOdertype());
 		System.out.println(a.getFamilygroup());
 		System.out.println(a.getMajorgroup());
-		System.out.println(a.getTendermedia());*/
+		System.out.println(a.getTendermedia());
+		System.out.println(a.getDiscount());*/
+		System.out.println(a.getEmployee());
 
 
 	}

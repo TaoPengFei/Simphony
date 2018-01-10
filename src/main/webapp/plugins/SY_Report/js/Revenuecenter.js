@@ -30,7 +30,7 @@ var settingrct = {
 
 		$.getJSON(
         // "/Simphony/ReportFilterParameter.do",
-        "http://localhost:8080/Simphony/RevenuecenterParameter.do",
+        "http://localhost:8888/Simphony/RevenuecenterParameter.do",
 			function(result){
         console.log(result);
 				jsonDatarct = "[";

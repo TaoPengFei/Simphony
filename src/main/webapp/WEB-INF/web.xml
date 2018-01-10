@@ -2,7 +2,7 @@
 <web-app id="PentahoSampleServlet" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
   <display-name>PentahoSampleServlet</display-name>
 
-  <servlet>
+   <servlet>
     <description>Sample servlet which generates a HTML report</description>
     <display-name>Sample</display-name>
     <servlet-name>Sample</servlet-name>
@@ -13,6 +13,28 @@
     <url-pattern>/Sample</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <description>HistoricalEmployee</description>
+    <display-name>HistoricalEmployee</display-name>
+    <servlet-name>HistoricalEmployee</servlet-name>
+    <servlet-class>org.simphony.prd.Report.HistoricalEmployee</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HistoricalEmployee</servlet-name>
+    <url-pattern>/HistoricalEmployee</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>HistoricalDetail</description>
+    <display-name>HistoricalDetail</display-name>
+    <servlet-name>HistoricalDetail</servlet-name>
+    <servlet-class>org.simphony.prd.Report.HistoricalDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HistoricalDetail</servlet-name>
+    <url-pattern>/HistoricalDetail</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description>RevenuecenterParameter</description>
     <display-name>RevenuecenterParameter</display-name>
@@ -69,6 +91,28 @@
     <url-pattern>/FamilygroupParameter.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <description>DiscountParameter</description>
+    <display-name>DiscountParameter</display-name>
+    <servlet-name>DiscountParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.DiscountParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DiscountParameter</servlet-name>
+    <url-pattern>/DiscountParameter.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>EmployeeParameter</description>
+    <display-name>EmployeeParameter</display-name>
+    <servlet-name>EmployeeParameter</servlet-name>
+    <servlet-class>org.simphony.prd.Report.EmployeeParameter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmployeeParameter</servlet-name>
+    <url-pattern>/EmployeeParameter.do</url-pattern>
+  </servlet-mapping>
+  
   
   
  
@@ -85,8 +129,8 @@
   </servlet-mapping>
 
 
-  <welcome-file-list>
+  <!-- <welcome-file-list>
     <welcome-file>Sample</welcome-file>
-  </welcome-file-list>
+  </welcome-file-list> -->
 </web-app>
 

@@ -35,4 +35,14 @@ public class SelectInfoService implements Serializable{
         return requestInfo.getTendermedia();  
     } 
     
+    public List<Object> getDiscountColoumName(){  
+        
+        return requestInfo.getDiscount();  
+    }
+    
+    public List<Object> getEmployeeColoumName(){  
+        
+        return requestInfo.getEmployee();  
+    } 
+    
 }

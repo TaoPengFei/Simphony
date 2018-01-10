@@ -25,7 +25,7 @@
 				});
 				$.getJSON(
 					// "/Simphony/ReportFilterParameter.do",
-					"http://localhost:8080/Simphony/TendermediaParameter.do",
+					"http://localhost:8888/Simphony/TendermediaParameter.do",
 					function(result){
 						jsonData_ted = "[";
 						$.each(
