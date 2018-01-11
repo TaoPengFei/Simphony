@@ -223,11 +223,23 @@ public class RequestInfoFromSqlserver {
 	    	
 	    	sqlserverUtils = new SqlserverUtils();  
 	        Statement statement = sqlserverUtils.linkSqlserver();  
-	        String sql = "select -1,-999,'ALL',1\r\n" + 
+	        /*String sql = "select -1,-999,'ALL',1\r\n" +
 	        		"union all\r\n" + 
 	        		"select discountID,-1,nameMaster,2 from discount\r\n" + 
 	        		"where organizationID =  10260\r\n" + 
-	        		"AND locationID  >=  -2147483648 ";  
+	        		"AND locationID  >=  -2147483648 ";  */
+		 	String sql = "select -1,-999,'ALL',1\n" +
+				 " union all\n" +
+				 "select distinct a.DiscountId,-1,\n" +
+				 "\t\t\ta.Name,2 \n" +
+				 "\tfrom DISCOUNT a\n" +
+				 "\tInner Join SPOS_REPORT_GROUP b\n" +
+				 "\ton b.reportGroupType = 2\n" +
+				 "\tand a.OrganizationId = b.OrganizationId\n" +
+				 "\tand a.LocationId = b.LocationId\n" +
+				 "\tand a.sposReportGroupID = b.reportGroupID\n" +
+				 "\tand a.OrganizationId =10260\n" +
+				 "\tand a.LocationId =10001";
 	        List<Object> listDiscount = new ArrayList<Object>();
 	        try {  
 	            ResultSet rs = statement.executeQuery(sql);  

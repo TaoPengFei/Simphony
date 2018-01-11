@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Summary Reporter</title>
+	<title>HistReceiptEmployee</title>
 	<link href="plugins/SY_Report/daterangepicker/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="plugins/SY_Report/daterangepicker/daterangepicker-bs3.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="plugins/SY_Report/daterangepicker/daterangepicker-1.3.7.css" />
@@ -144,7 +144,7 @@
 										SKU码
 									</label>
 								<div class="controls">
-									<input id="barCode" type="text"  value="999999" style="width:190px;line-height: 30px;background-color: #fff;"/>
+									<input id="barCode" type="text"  value="-1" style="width:190px;line-height: 30px;background-color: #fff;"/>
 								</div>
 							</div>
 						</div>
@@ -453,7 +453,7 @@
 						*                          报表的url                 *
 						*****************************************************/
             			var url = "http://localhost:8888/Simphony/HistoricalEmployee?" + url_param;
-						alert(url);
+//						alert(url);
 						$("#report").attr("src", url);
 					});
 				}();

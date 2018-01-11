@@ -43,7 +43,6 @@ public class SqlserverUtils {
             //e.printStackTrace();
             return null;
         }
-
     }
 
     public PreparedStatement linkSqlserver(String sql){

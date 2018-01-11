@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Summary Reporter</title>
+	<title>DaypartSummary</title>
 	<link href="plugins/SY_Report/daterangepicker/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="plugins/SY_Report/daterangepicker/daterangepicker-bs3.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="plugins/SY_Report/daterangepicker/daterangepicker-1.3.7.css" />
