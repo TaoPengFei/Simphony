@@ -13,11 +13,11 @@ import java.sql.Statement;
 public class SqlserverUtils {
 
     private String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private String url = "jdbc:sqlserver://10.200.10.82:1433;DatabaseName=Location_Activity_DB";//鏁版嵁搴撳湴鍧�浠ュ強鍚嶇О
-    private String user = "sa";//鏁版嵁搴撶敤鎴峰悕
-    private String password = "SIM29@123";//鏁版嵁搴撶敤鎴峰瘑鐮�
-    /*private String user = "Sbuxsim";//鏁版嵁搴撶敤鎴峰悕
-    private String password = "Welcome1@";//鏁版嵁搴撶敤鎴峰瘑鐮�*/
+    private String url = "jdbc:sqlserver://10.93.168.4:1433;DatabaseName=Location_Activity_DB";//鏁版嵁搴撳湴鍧�浠ュ強鍚嶇О
+    /*private String user = "sa";//鏁版嵁搴撶敤鎴峰悕
+    private String password = "SIM29@123";//鏁版嵁搴撶敤鎴峰瘑鐮�*/
+    private String user = "Sbuxsim";//鏁版嵁搴撶敤鎴峰悕
+    private String password = "Welcome1@";//鏁版嵁搴撶敤鎴峰瘑鐮�
     private Connection conn;
 
 
